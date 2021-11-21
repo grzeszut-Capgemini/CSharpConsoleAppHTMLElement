@@ -27,6 +27,14 @@ namespace ConsoleAppHTML
 			{
 				linkBuilder.Append(" href=\"").Append(Href).Append("\"");
 			}
+			if (!string.IsNullOrEmpty(Id))
+			{
+				linkBuilder.Append(" id=\"").Append(Id).Append("\"");
+			}
+			if (!string.IsNullOrEmpty(Class))
+			{
+				linkBuilder.Append(" class=\"").Append(Class).Append("\"");
+			}
 			if (!string.IsNullOrEmpty(Title))
 			{
 				linkBuilder.Append(" title=\"").Append(Title).Append("\"");
@@ -54,6 +62,8 @@ namespace ConsoleAppHTML
 		public override string Render2()
 		{
 			string href = "";
+			string id = "";
+			string classProp = "";
 			string title = "";
 			string style = "";
 			string text = "";
@@ -61,6 +71,14 @@ namespace ConsoleAppHTML
 			if (!string.IsNullOrEmpty(Href))
 			{
 				href = $" href=\"{Href}\" ";
+			}
+			if (!string.IsNullOrEmpty(Id))
+			{
+				id = $"id=\"{Id}\" ";
+			}
+			if (!string.IsNullOrEmpty(Class))
+			{
+				classProp = $"class=\"{Class}\" ";
 			}
 			if (!string.IsNullOrEmpty(Title))
 			{
@@ -75,7 +93,7 @@ namespace ConsoleAppHTML
 				text = Text;
 			}
 
-			return $"<a{href}{title}{style}>{text}</a>";
+			return $"<a{href}{id}{classProp}{title}{style}>{text}</a>";
 		}
 
 	}
@@ -87,7 +105,9 @@ namespace ConsoleAppHTML
 			Link googleLink = new Link()
 			{
 				Href = "https://google.com",
-				Style = "margin:0px",
+				Id = "google_link_id",
+				Class = "google_link_class",
+				Style = "padding:0px;margin:0px",
 				Title = "Link to Google.com",
 				Text = "Google.com WEBSITE",
 			};
